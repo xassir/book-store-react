@@ -9,12 +9,23 @@ class LoginForm extends React.Component {
         },
         loading: false,
         errors: {}
-    };    
+    }; 
+
+onSubmit = () => {
+    
+    this.props.submit(this.state.data);
+    // console.log(this.state.data.email);
+    // console.log(this.state.data.password);
+}
+onChange = e => 
+    this.setState({
+        data:{...this.state.data,[e.target.name] : e.target.value }
+});
 
     render(){
         const data = this.state;
         return (
-            <Form>
+            <Form onSubmit={this.onSubmit}>
                 <label htmlFor="email">Email</label>
                 <input
                     type="email"
@@ -22,7 +33,7 @@ class LoginForm extends React.Component {
                     name="email"
                     placeholder="test@test.com"
                     value={data.email}
-                    // onChange={this.onChange}
+                    onChange={this.onChange}
                 />
 
                 <label htmlFor="password">Password</label>
@@ -32,10 +43,10 @@ class LoginForm extends React.Component {
                     name="password"
                     placeholder="Password"
                     value={data.password}
-                    // onChange={this.onChange}
+                    onChange={this.onChange}
                 />
             <div>
-                <button id="login" className="ui primary button" role="button">Sign in</button>                
+                <Button id="login" className="ui primary button" role="button">Sign in</Button>                
             </div>
             </Form> 
 
