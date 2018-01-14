@@ -6,21 +6,18 @@ class LoginForm extends React.Component {
         data: {
             email: "",
             password: ""
-        },
-        loading: false,
-        errors: {}
+        },        
     }; 
 
 onSubmit = () => {
-    
     this.props.submit(this.state.data);
-    // console.log(this.state.data.email);
-    // console.log(this.state.data.password);
 }
-onChange = e => 
+onChange = event => {
+    const target = event.target;
     this.setState({
-        data:{...this.state.data,[e.target.name] : e.target.value }
-});
+        data:{...this.state.data,[target.name] : target.value }
+    });
+}
 
     render(){
         const data = this.state;
